@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h”
+#include "../includes/get_next_line.h"
 
 void	ft_read_line(int fd, char **return_line);
 char	*ft_sorting_leftover(char **return_line);

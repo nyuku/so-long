@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h”
-#include <stdio.h>
+#include "../includes/ft_printf.h"
 
 static void	ft_write(unsigned long long decima, char type, char c)
 {

@@ -17,10 +17,16 @@ CC				= gcc
 
 # ---------------- FLAGS --------------
 CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -Imlx -w
-MLXFLAGS 		= -Llib/mlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS 		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # ---------------- Sources -----------
-SRC				= ./main.c
+SRC				= ./src/main.c \
+				 ./src/ft_printf/ft_printf.c \
+				 ./src/gnl/get_next_line.c \
+				 ./src/gnl/get_next_line_utils.c \
+				 ./src/ft_printf/s_c_p_d_i.c \
+				 ./src/ft_printf/u_x_X.c
+
 LIB				= ./includes/so_long.h
 MAKEMLX			= ${MAKE} -C ${MLX}
 MLX				= ./mlx/
@@ -32,15 +38,13 @@ OBJS			= ${SRC:.c=.o}
 all:			${NAME}
 ${NAME}:		${OBJS}
 				${MAKEMLX}
-				${CC} ${CFLAGS} ${MLXFLAGS} -o ${NAME} ${OBJS} && ./${NAME}
-				
-				
-				# gcc -Wall -Wextra -Werror -g -fsanitize=address -Imlx -w  -Llib/mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
-			
+				${CC} ${CFLAGS} ${MLXFLAGS} -o ${NAME} ${OBJS}
+
 .c.o:
 				${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-
+run:
+				./${NAME} map/simple_map.ber
 
 # --------------- Service nettoyage --------------------
 clean:

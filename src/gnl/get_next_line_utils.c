@@ -16,7 +16,7 @@
 // //copie ce que renvoie read vers le buffer vers la stash, static
 // void    cpy_stash(char *str);
 
-#include "so_long.h”
+#include "../includes/get_next_line.h"
 
 size_t	ft_strlen(const char *str)
 {
