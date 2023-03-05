@@ -18,4 +18,17 @@
 # include "ft_printf.h"
 #include <fcntl.h> // pour open
 
+typedef struct s_map
+{
+    int i;
+    char *str;
+
+} t_map;
+
+typedef struct s_main
+{
+    t_map map;
+
+} t_main;
+
 # endif

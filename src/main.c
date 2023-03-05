@@ -12,12 +12,17 @@
 
 #include "../includes/so_long.h"
 
-int count_line_map(char *map_sample); //pourquoi en tableau...?
+int count_line_map(char *map_sample);
 void print_map(char **map, int line_count);
 char **harvest_map(char *map_sample);
 
 int main(int argc, char **argv)
 {
+    //struct example
+    t_main structs;
+    structs.map.i = 0;
+    printf("%d\n", structs.map.i);
+
     int	fd;
     int line_count;
 
@@ -38,11 +43,14 @@ int main(int argc, char **argv)
     }
     line_count = count_line_map(argv[1]);
 
-    //
+    // Stocker la map dans un char **
     char **map;
     map = harvest_map(argv[1]);
-    //
+
+    // Imprimer la map
     print_map(map, line_count);
+
+    // Fin du programme
     ft_printf("End\n");
     close (fd);
 }
@@ -58,11 +66,11 @@ void print_map(char **map, int line_count)
     }
 }
 
-int count_line_map(char *map_sample) //pourquoi en tableau...?
+int count_line_map(char *map_sample)
 {
-	int fd; //on a besoin d'ouvrir la map pour lire avec gnl
+	int fd;
 	int count;
-	char *gnl_return;// stock le retour de gnl
+	char *gnl_return;
 
 	count = 0;
 	fd = open(map_sample, O_RDONLY);// on deference pour utiliser map
