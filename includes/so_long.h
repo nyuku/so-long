@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/04 23:22:20 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:04:55 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,22 @@
 # include "ft_printf.h"
 #include <fcntl.h> // pour open
 
-typedef struct s_map
+typedef struct s_mlx
 {
-    int i;
-    char *str;
+	void *newimage_ptr;
 
-} t_map;
+	char *adress;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+}	t_mlx;
 
-typedef struct s_main
+typedef struct s_data
 {
-    t_map map;
+	void *mlx_ptr;
+	void *win_ptr;
+	t_img	mlx;
+}	t_data;
 
-} t_main;
 
 # endif

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/16          by angnguye          #+#    #+#              #
-#    Updated: 2023/03/04 23:51:19 by angnguye         ###   ########.fr        #
+#    Created: 2023/02/16 00:00:00 by angnguye          #+#    #+#              #
+#    Updated: 2023/03/09 15:33:10 by angnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ clean:
 
 fclean:			clean
 				${RM} ${NAME}
-				${MAKEMLX} fclean
+				# ${MAKEMLX} fclean
 
 re:				fclean all
 

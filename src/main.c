@@ -6,122 +6,52 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:48:31 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/04 23:32:26 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:39:41 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int count_line_map(char *map_sample);
-void print_map(char **map, int line_count);
-char **harvest_map(char *map_sample);
+#include <stdio.h>
 
-int main(int argc, char **argv)
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+
+int main()
 {
-    //struct example
-    t_main structs;
-    structs.map.i = 0;
-    printf("%d\n", structs.map.i);
+	t_mlx mlx; // on appelle la structure
+	// printf("Hello World");
+	void *mlx_ptr;
+	void *mlx_window_ptr;
+    char *image_path;//xmp
+	void *img;//xpm
 
-    int	fd;
-    int line_count;
+	int	img_width = 1920;//xmp
+	int	img_height = 1080;//xmp
 
+	image_path = "../image/coco.xmp";
 
-    if (argc != 2)
-    {
-        ft_printf("Usage: ./so_long map/*.ber\n");
-        return(1);
-    }
-    ft_printf("Launcher\n");
-    ft_printf("Map selectionnée: %s\n", argv[1]);
+    mlx_ptr = mlx_init();
+	mlx_window_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "Test :3");
+	mlx.newimage_ptr = mlx_new_image(mlx_ptr, 1920, 1080);
+	mlx.adress = mlx_get_data_addr(mlx.newimage_ptr, &mlx.bits_per_pixel, &mlx.line_length, &mlx.endian);
+	
+	// my_mlx_pixel_put(&mlx, 5, 5,0x00FF00FF );// met un pixel a 5x5y turquoise
+	img = mlx_xpm_file_to_image(mlx_ptr,image_path, &img_width, img_height);
 
-    fd = open(argv[1], O_RDONLY);
-    if (fd < 0)
-    {
-        ft_printf("Fichier erroné\n");
-        return(1);
-    }
-    line_count = count_line_map(argv[1]);
+	mlx_put_image_to_window(mlx_ptr, mlx_window_ptr,mlx.newimage_ptr, 0, 0);
+	mlx_loop(mlx_ptr);// a mettre a la fin pour boucler
+	
+	
+	
 
-    // Stocker la map dans un char **
-    char **map;
-    map = harvest_map(argv[1]);
-
-    // Imprimer la map
-    print_map(map, line_count);
-
-    // Fin du programme
-    ft_printf("End\n");
-    close (fd);
 }
 
-void print_map(char **map, int line_count)
+//fonction bricole
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
-    int i;
-    i = 0;
-    while (i < line_count)
-    {
-        ft_printf("%s", map[i]);
-        i++;
-    }
+	char	*dst;
+
+	dst = mlx->adress + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
-int count_line_map(char *map_sample)
-{
-	int fd;
-	int count;
-	char *gnl_return;
-
-	count = 0;
-	fd = open(map_sample, O_RDONLY);// on deference pour utiliser map
-	gnl_return = get_next_line(fd);//pour la first, rentrer boucle
-
-	while(gnl_return) // car sera == null a la fin
-	{
-		free(gnl_return); // touche statik, osef on a deja check. propre pour le prochain tour
-		gnl_return = get_next_line(fd);
-		count++;
-	}
-	close (fd);
-	return(count);
-}
-
-char **harvest_map(char *map_sample)
-{
-	int fd;
-	int line_map;
-	char **tableau_stock;
-	char *line; //récupérer ce qu'a lu gnl
-	int i; //index tableau
-
-	fd = open(map_sample, O_RDONLY);
-	line_map = count_line_map(map_sample);
-
-	tableau_stock = malloc(sizeof(char *)*(line_map));
-	if (!tableau_stock)
-		return(NULL);
-	while(i < line_map)
-	{
-		line = get_next_line(fd);//faut bien stocker qq part le contenu lu
-		tableau_stock[i] = ft_strdup(line); //duplique la line dans le tableau
-		free (line);//tout ce qui touche gnl...free pour remettre neuf
-        i++;
-	}
-	close (fd);
-	return (tableau_stock);
-}
-
-// #include "../lib/so_long.h"
-// #include <stdio.h>
-
-// int main()
-// {
-// 	printf("Hello World");
-// 	void *mlx;
-// 	void *mlx_window;
-    
-//     mlx = mlx_init();
-// 	mlx_window = mlx_new_window(mlx, 1920, 1080, "Test :3");
-// 	mlx_loop(mlx);
-// 	return(0);
-// }
