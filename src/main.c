@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:48:31 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/09 23:50:45 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:21:19 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,54 @@
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
+int	key_hook(int keycode, t_mlx *mlx) // notre fonction
+{
+	if (keycode == KEY_UP){
+		mlx.x += 25;
+		// mlx->y += 25;
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->img.newimage_ptr, mlx->x, mlx->y);	
+		printf("Up!\n");
+	}
+	
+	if (keycode == KEY_LFT)
+		printf("Left!\n");
+	if (keycode == KEY_DWN)
+		printf("Down!\n");
+	if (keycode == KEY_RGT)
+		printf("Right!\n");
+	return (0);
+}
+
 int main()
 {
-	t_mlx mlx; // on appelle la structure
-	// printf("Hello World");
+	t_mlx mlx; // on appelle la structure mlx
 
-	
-	// void *mlx_ptr;
-	// void *mlx_window_ptr;
     char *image_path = "image/blop.xpm";
-	void *img;//xpm
+	// void *img;//xpm
 
 	int	img_width;//xmp
 	int	img_height;//xmp
 
 
     mlx.mlx_ptr = mlx_init();
-	mlx.mlx_window_ptr = mlx_new_window(mlx.mlx_ptr, 750, 600, "Test :3");
+	mlx.mlx_window_ptr = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Test :3");
 	
-	// my_mlx_pixel_put(&mlx, 5, 5,0x00FF00FF );// met un pixel a 5x5y turquoise
-	mlx.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, image_path, &img_width, &img_height);
-	if (!mlx.newimage_ptr)
+	mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, image_path, &img_width, &img_height);
+	if (!mlx.img.newimage_ptr)
 	{
 		ft_putstr("error file image\n");
-		return(1);
+		return(ERROR);
+	}
+	mlx.x = 255;
+	mlx.y = 255;
+	while (1)
+	{
+		mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.img.newimage_ptr, mlx.x, mlx.y);	
+		mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);
+		printf("%d\n",mlx.x);
+		printf("%d\n",mlx.y);
+		mlx_loop(mlx.mlx_ptr);// a mettre a la fin pour boucler
 	}
 	
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.newimage_ptr, 250, 250);
-	mlx_loop(mlx.mlx_ptr);// a mettre a la fin pour boucler
-
-}
-// void	img_pix_put(t_mlx *img, int x, int y, int color)
-// {
-// 	char    *pixel;
-
-//     pixel = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
-// 	*(int *)pixel = color;
-// }
-
-//fonction bricole
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->adress + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
 }
 

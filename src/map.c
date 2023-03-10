@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:06:28 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/09 14:07:41 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:18:09 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ char **harvest_map(char *map_sample);
 
 int main(int argc, char **argv)
 {
-    //struct example
-    t_main structs;
-    structs.map.i = 0;
-    printf("%d\n", structs.map.i);
+    //struct
+    t_map map;
+    map.i = 0;
+    printf("%d\n", map.i);
 
     int	fd;
     int line_count;
-
 
     if (argc != 2)
     {
