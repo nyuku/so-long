@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/11 00:46:28 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:25:07 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int	img_width;//xmp
+	int	img_height;//xpm
 }	t_img;
 
 /*◇───────────────────────────────────────────────────────────────◇*\
@@ -81,8 +83,24 @@ typedef struct s_map
 	char **char_map;
 	int lines;
 	int colonn;
+	int count_mouv;
 }	t_map;
 
 
+
+
+ //--------Key_hook.c------//
+int	key_hook(int keycode, t_mlx *mlx);
+
+ //--------info_map.c------//
+int	count_colonn(char **str);//compte colonne map
+void print_map(char **map, int line_count); //checker map, print str par str
+char **ft_harvest_map(char *map_sample); // recolte la map en str
+int ft_count_line_map(char *map_sample); // compte nombre de ligne dans la map
+void	draw_personnage(void *mlx_ptr, void *window_ptr);
+void erase_personnage(void *mlx_ptr, void *win_ptr);
+int check_map_ext(char **argv);
+int check_rectangle(int largeur, int longueur);
+int check_wall_map(t_map *map);
 
 # endif

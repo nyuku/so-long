@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: angela <angela@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 00:00:00 by angnguye          #+#    #+#              #
-#    Updated: 2023/03/09 15:33:10 by angnguye         ###   ########.fr        #
+#    Updated: 2023/03/12 17:52:59 by angela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -Imlx -w
 MLXFLAGS 		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # ---------------- Sources -----------
-SRC				= ./src/main.c \
+SRC				= ./src/so_long.c \
 				 ./src/ft_printf/ft_printf.c \
 				 ./src/gnl/get_next_line.c \
 				 ./src/gnl/get_next_line_utils.c \
 				 ./src/ft_printf/s_c_p_d_i.c \
-				 ./src/ft_printf/u_x_X.c
+				 ./src/ft_printf/u_x_X.c \
+				 ./src/info_map.c \
+				 ./src/key_hook.c 
 
 LIB				= ./includes/so_long.h
 MAKEMLX			= ${MAKE} -C ${MLX}
