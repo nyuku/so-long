@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/15 14:25:11 by angela           ###   ########.fr       */
+/*   Updated: 2023/03/16 19:53:55 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int main(int argc, char **argv)
 	t_img	img;
 	t_mlx	mlx;
 	t_map	map;
+	t_decor decor;
+
 	char *image_path = "image/blop.xpm";
+	char *wall_path = "image/wall1.xpm";
+	char *background_path = "image/fond_bloc.xpm";
 	int fd;
 	
 	if (argc != 2)
@@ -49,24 +53,36 @@ int main(int argc, char **argv)
 	mlx.mlx_ptr = mlx_init();
 	mlx.mlx_window_ptr = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Test :3");
 	//--charge image--//
-	//!!mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, image_path, &img.img_width, &img.img_height);//doit stocker width et height qq part (64)
-	//!!mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, ./image/wall1.xpm, &img.img_width, &img.img_height);
+
+	//init_decor;
+
+	decor.background = mlx_xpm_file_to_image(mlx.mlx_ptr, background_path, &img.img_width, &img.img_height);
+	decor.wall_left =  mlx_xpm_file_to_image(mlx.mlx_ptr, wall_path, &img.img_width, &img.img_height);
+	mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, image_path, &img.img_width, &img.img_height);//doit stocker width et height qq part (64)
+	//test, mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, ./image/wall1.xpm, &img.img_width, &img.img_height);
 	if (!mlx.img.newimage_ptr)
 	{
 		ft_putstr("error file image\n");
 		return(ERROR);
 	}
-	//---position de l'image sur la fenêtre---//
+	//---position de l'image de notre perso sur la fenêtre---//
 	mlx.x = 255;
 	mlx.y = 255;
 
+	mlx.old_x = 0;//init
+	mlx.old_y = 0;
+	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);//essaie de mettre avant pour avoir x et y
+	printf("position de x: %d\n position de y: %d\n",mlx.old_x, mlx.old_y);
 	//----mettre image sur la fenêtre----//
 	
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.img.newimage_ptr, mlx.x, mlx.y);	
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, decor.wall_left, 100, 100);// mur
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.img.newimage_ptr, mlx.x, mlx.y);//affiche le point depart
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, decor.background, mlx.old_x, mlx.old_y);
 	
 	//---mouvements---//
-	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);
-	
+	mlx.move = 64;
+	//mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);
+	//mlx_loop_hook(mlx, render_next_frame, YourStruct);
 	mlx_loop(mlx.mlx_ptr);// a mettre a la fin pour boucler
 	
 	close (fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/15 14:25:07 by angela           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:20:33 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define KEY_DOWN 125
 # define KEY_RIGTH 124
 # define KEY_ESC 53
+# define KEY_r 82
 # define X_BTN 17
 /*◇───────────────────────────────────────────────────────────────◇*\
                               MACRO window
@@ -71,8 +72,21 @@ typedef struct s_mlx
 	t_img	img;
 	int x;
 	int y;
+	int old_x;
+	int old_y;
+	int move;
+
 
 }	t_mlx;
+
+typedef struct s_decor
+{
+	void *wall_left;
+	void *background;
+	// void *wall_right;
+	// void *wall_up;
+	// void *wall_down;
+}	t_decor;
 
 /*◇───────────────────────────────────────────────────────────────◇*\
                        Pour map
@@ -84,6 +98,7 @@ typedef struct s_map
 	int lines;
 	int colonn;
 	int count_mouv;
+	
 }	t_map;
 
 
@@ -102,5 +117,8 @@ void erase_personnage(void *mlx_ptr, void *win_ptr);
 int check_map_ext(char **argv);
 int check_rectangle(int largeur, int longueur);
 int check_wall_map(t_map *map);
+
+ //--------decor_init.c------//
+void init_decor(t_decor *decor, t_mlx *mlx, t_img *img);
 
 # endif

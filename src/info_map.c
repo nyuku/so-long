@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/03/15 14:25:04 by angela           ###   ########.fr       */
+/*   Updated: 2023/03/16 14:48:57 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int check_rectangle(int largeur, int longueur)
         return(1);
     }
 }
-int check_wall_map(t_map *map,int i, int j)
+
 int check_wall_map(t_map *map)
 {
     int i = 0;
