@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/16 18:20:33 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:52:46 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define KEY_UP 126
 # define KEY_LEFT 123
 # define KEY_DOWN 125
-# define KEY_RIGTH 124
+# define KEY_RIGHT 124
 # define KEY_ESC 53
 # define KEY_r 82
 # define X_BTN 17
@@ -45,48 +45,28 @@
 # define WALL "./image/wall1.xpm"
 # define MONSTER "./image/blop.xpm"
 
-
-
 /*◇───────────────────────────────────────────────────────────────◇*\
-                       Pour afficher image 
+                          	   Move
 \*◇───────────────────────────────────────────────────────────────◇*/
-typedef struct s_img
+typedef struct s_move
 {
-	void	*newimage_ptr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int	img_width;//xmp
-	int	img_height;//xpm
-}	t_img;
-
+	int up;
+	int down;
+	int right;
+	int left;
+}	t_move;
 /*◇───────────────────────────────────────────────────────────────◇*\
-                       Pour afficher mlx 
+                          	   Game
 \*◇───────────────────────────────────────────────────────────────◇*/
-
-typedef struct s_mlx
+typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*mlx_window_ptr;
-	char	*adress;
-	t_img	img;
-	int x;
-	int y;
-	int old_x;
-	int old_y;
-	int move;
-
-
-}	t_mlx;
-
-typedef struct s_decor
-{
-	void *wall_left;
-	void *background;
-	// void *wall_right;
-	// void *wall_up;
-	// void *wall_down;
-}	t_decor;
+	int	loot;
+	int	exit;
+	int player;
+	int moves;
+	
+	
+} s_game;
 
 /*◇───────────────────────────────────────────────────────────────◇*\
                        Pour map
@@ -101,11 +81,57 @@ typedef struct s_map
 	
 }	t_map;
 
+/*◇───────────────────────────────────────────────────────────────◇*\
+                       Pour afficher image 
+\*◇───────────────────────────────────────────────────────────────◇*/
+typedef struct s_img
+{
+	void	*newimage_ptr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int	img_width;//xmp
+	int	img_height;//xpm
+}	t_img;
+
+typedef struct s_decor
+{
+	void *wall_left;
+	void *background;
+	// void *wall_right;
+	// void *wall_up;
+	// void *wall_down;
+}	t_decor;
 
 
+/*◇───────────────────────────────────────────────────────────────◇*\
+                       Pour afficher mlx 
+\*◇───────────────────────────────────────────────────────────────◇*/
+
+typedef struct s_mlx
+{
+	t_decor	decor;
+	t_img	img;
+	//t_move	jump;
+
+	void	*mlx_ptr;
+	void	*mlx_window_ptr;
+	char	*adress;
+	
+	int x;
+	int y;
+	int old_x;
+	int old_y;
+	int jump;
+
+
+}	t_mlx;
 
  //--------Key_hook.c------//
 int	key_hook(int keycode, t_mlx *mlx);
+
+//--------loop_hook------//
+//int render(t_mlx *mlx);
 
  //--------info_map.c------//
 int	count_colonn(char **str);//compte colonne map
