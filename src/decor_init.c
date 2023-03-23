@@ -6,14 +6,20 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:20 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/16 17:47:37 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:00:21 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-void init_decor(t_decor *decor, t_mlx *mlx, t_img *img)
+void init_decor(t_mlx *mlx)
 {
-	decor->wall_left =  mlx_xpm_file_to_image(mlx.mlx_ptr, "./image/wall1.xpm", &img.img_width, &img.img_height);
+	//indique le chemin de l'image, pour la fonction xpm
+	mlx->decor.p_path = "image/blop.xpm";
+	mlx->decor.wall_path = "image/wall1.xpm";
+	mlx->decor.background_path = "image/fond_bloc.xpm";
+	
+	//ptr pour xpm
+
 	// decor->wall_right
 	// decor->wall_up
 	// decor->wall_down

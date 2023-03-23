@@ -6,7 +6,7 @@
 #    By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 00:00:00 by angnguye          #+#    #+#              #
-#    Updated: 2023/03/18 19:41:12 by angnguye         ###   ########.fr        #
+#    Updated: 2023/03/23 22:45:44 by angnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ RM				= rm -f
 CC				= gcc
 
 # ---------------- FLAGS --------------
-CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address -Imlx -w
+CFLAGS			= -Wall -Wextra -Werror -g  -Imlx -w #-fsanitize=address
 MLXFLAGS 		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # ---------------- Sources -----------
@@ -27,7 +27,9 @@ SRC				= ./src/so_long.c \
 				 ./src/ft_printf/s_c_p_d_i.c \
 				 ./src/ft_printf/u_x_X.c \
 				 ./src/info_map.c \
-				 ./src/key_hook.c 
+				 ./src/key_hook.c \
+				 ./src/decor_init.c \
+				 ./src/render.c
 
 LIB				= ./includes/so_long.h
 MAKEMLX			= ${MAKE} -C ${MLX}

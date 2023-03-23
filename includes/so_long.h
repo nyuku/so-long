@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/18 19:52:46 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:06:28 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
                               MACRO window
 \*◇───────────────────────────────────────────────────────────────◇*/
 # define ERROR 1
-# define WIN_H 420
-# define WIN_W 420
+# define WIN_H 383
+# define WIN_W 511
 // # define IMG_PIXEL 32
 /*◇───────────────────────────────────────────────────────────────◇*\
                               MACRO graphic
@@ -66,7 +66,7 @@ typedef struct s_game
 	int moves;
 	
 	
-} s_game;
+} t_game;
 
 /*◇───────────────────────────────────────────────────────────────◇*\
                        Pour map
@@ -86,7 +86,7 @@ typedef struct s_map
 \*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_img
 {
-	void	*newimage_ptr;
+	//void	*newimage_ptr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -96,8 +96,15 @@ typedef struct s_img
 
 typedef struct s_decor
 {
+	//----path----//
 	void *wall_left;
-	void *background;
+	char *background_path;
+	char *p_path;
+	char *wall_path;
+	//----ptr-----//
+	void *background_ptr;
+	void *wall_ptr;
+	void *player_ptr;
 	// void *wall_right;
 	// void *wall_up;
 	// void *wall_down;
@@ -112,8 +119,11 @@ typedef struct s_mlx
 {
 	t_decor	decor;
 	t_img	img;
+	t_move	move;
+	t_map	map;
 	//t_move	jump;
-
+	int	win_height;
+	int	win_width;
 	void	*mlx_ptr;
 	void	*mlx_window_ptr;
 	char	*adress;
@@ -143,8 +153,9 @@ void erase_personnage(void *mlx_ptr, void *win_ptr);
 int check_map_ext(char **argv);
 int check_rectangle(int largeur, int longueur);
 int check_wall_map(t_map *map);
+void render_wall_map(t_mlx *mlx);
 
  //--------decor_init.c------//
-void init_decor(t_decor *decor, t_mlx *mlx, t_img *img);
+void init_decor(t_mlx *mlx);
 
 # endif
