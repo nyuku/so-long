@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 14:39:52 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:48:52 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int check_map_ext(char **argv);
 int check_rectangle(int largeur, int longueur);
 int check_wall_map(t_map *map);
 void render_wall_map(t_mlx *mlx);
-
+int render_player(t_mlx *mlx);
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);
 

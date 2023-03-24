@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 14:46:54 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:52:23 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int main(int argc, char **argv)
 	}
 	
 	//---position de l'image de notre perso sur la fenêtre, depart---//
-	mlx.x = 255;
-	mlx.y = 255;
+	//mlx.x = 255;
+	//mlx.y = 255;
 
 	// mlx.old_x = 0;//init
 	// mlx.old_y = 0;
@@ -87,7 +87,9 @@ int main(int argc, char **argv)
 	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.wall_ptr, 100, 100);// mur
 	render_wall_map(&mlx);
 	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.background_ptr, 300, 300);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.player_ptr, mlx.x, mlx.y);//affiche le point depart
+	//-----------player begin-------------//
+	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.player_ptr, mlx.x, mlx.y);//affiche le point depart
+	render_player(&mlx);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.check_ptr, 0, 128);
 	//---mouvements---//
 	mlx.jump = 64;
