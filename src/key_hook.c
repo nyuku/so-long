@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:33:44 by angela            #+#    #+#             */
-/*   Updated: 2023/03/23 19:49:35 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:31:59 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	key_hook(int keycode, t_mlx *mlx) // notre fonction de key input
 		{
 			mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
 			printf("shuting down!\n");
+			exit(1);
 		}
 	}
 	

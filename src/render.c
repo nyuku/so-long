@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/23 23:03:33 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:35:45 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 
 		i = 0;
 		j = 0;
-		while((i < 3))//fin du tableau
+		while((j < (mlx->map.lines) /*i < mlx->map.colonn*/))//fin du tableau
 		{
-			while(j < mlx->map.lines)
+			while(i < mlx->map.colonn /*j < mlx->map.lines*/)
 			{
 				if(mlx->map.char_map[j][i] == '1')
 				{
-					mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.wall_ptr, (j * 64), (i * 64));
+					mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.wall_ptr, (i * 64), (j * 64));
 					printf("ploooop\n");
 				}
-				j++;
+				i++;
 			}
-			i++;
-			j = 0;
+			j++;
+			i = 0;
 
 		}
 		

@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/23 23:06:28 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:39:52 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include <fcntl.h> // pour open
+#include <stdlib.h> // exit
 
 /*◇───────────────────────────────────────────────────────────────◇*\
                               MACRO key
@@ -101,10 +102,12 @@ typedef struct s_decor
 	char *background_path;
 	char *p_path;
 	char *wall_path;
+	char *check_path;
 	//----ptr-----//
 	void *background_ptr;
 	void *wall_ptr;
 	void *player_ptr;
+	void *check_ptr;
 	// void *wall_right;
 	// void *wall_up;
 	// void *wall_down;

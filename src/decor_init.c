@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:20 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/23 20:00:21 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:39:28 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void init_decor(t_mlx *mlx)
 	mlx->decor.p_path = "image/blop.xpm";
 	mlx->decor.wall_path = "image/wall1.xpm";
 	mlx->decor.background_path = "image/fond_bloc.xpm";
+	mlx->decor.check_path = "image/check.xpm";
 	
 	//ptr pour xpm
 

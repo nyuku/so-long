@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/23 23:09:19 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:46:54 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 	mlx.decor.background_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.background_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.wall_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.wall_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.player_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.p_path, &mlx.img.img_width, &mlx.img.img_height);//doit stocker width et height qq part (64)
-
+	mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
 	if (!mlx.decor.player_ptr)
 	{
 		ft_putstr("error file image\n");
@@ -86,9 +86,9 @@ int main(int argc, char **argv)
 	// mlx_loop_hook(mlx.mlx_window_ptr, render, &mlx);
 	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.wall_ptr, 100, 100);// mur
 	render_wall_map(&mlx);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.background_ptr, 300, 300);
+	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.background_ptr, 300, 300);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.player_ptr, mlx.x, mlx.y);//affiche le point depart
-	
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.check_ptr, 0, 128);
 	//---mouvements---//
 	mlx.jump = 64;
 	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);//input clavier
