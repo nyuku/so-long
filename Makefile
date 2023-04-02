@@ -29,7 +29,8 @@ SRC				= ./src/so_long.c \
 				 ./src/info_map.c \
 				 ./src/key_hook.c \
 				 ./src/decor_init.c \
-				 ./src/render.c
+				 ./src/render.c \
+				 ./src/move.c
 
 LIB				= ./includes/so_long.h
 MAKEMLX			= ${MAKE} -C ${MLX}

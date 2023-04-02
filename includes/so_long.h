@@ -158,6 +158,10 @@ int check_rectangle(int largeur, int longueur);
 int check_wall_map(t_map *map);
 void render_wall_map(t_mlx *mlx);
 int render_player(t_mlx *mlx);
+int check_up(t_mlx *mlx);
+int check_down(t_mlx *mlx);
+int check_right(t_mlx *mlx);
+int check_left(t_mlx *mlx);
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);
 
