@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 16:48:52 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/03 09:56:26 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,9 @@ char **ft_harvest_map(char *map_sample); // recolte la map en str
 int ft_count_line_map(char *map_sample); // compte nombre de ligne dans la map
 void	draw_personnage(void *mlx_ptr, void *window_ptr);
 void erase_personnage(void *mlx_ptr, void *win_ptr);
-int check_map_ext(char **argv);
+int check_map_ext(char *argv);
 int check_rectangle(int largeur, int longueur);
-int check_wall_map(t_map *map);
+int check_wall_map(t_mlx *mlx);
 void render_wall_map(t_mlx *mlx);
 int render_player(t_mlx *mlx);
 int check_up(t_mlx *mlx);

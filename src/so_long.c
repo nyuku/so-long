@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 16:52:23 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/03 09:51:32 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int main(int argc, char **argv)
         return(NULL);
 	}
     ft_printf("\ngoood! : \nMap selectionnée: %s\n", argv[1]);
+	check_map_ext(argv[1]);
+	
+	
 
 	//---- ouverture de la map ----//
 	fd = open(argv[1], O_RDONLY);
@@ -50,6 +53,7 @@ int main(int argc, char **argv)
         return(NULL);
     }
 
+
 	//------get info map -----//
 	mlx.map.lines = ft_count_line_map(argv[1]);
 	mlx.map.char_map = ft_harvest_map(argv[1]);//stock la str..?
@@ -57,7 +61,8 @@ int main(int argc, char **argv)
 	print_map(mlx.map.char_map, mlx.map.lines);
 	ft_printf("map nombre de lignes: %d\n",mlx.map.lines);
 	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
-
+	check_rectangle(mlx.map.lines,mlx.map.colonn);
+	check_wall_map(&mlx);
 	//------- init MLX ------//
 	mlx.win_height = 64 * mlx.map.lines;
 	mlx.win_width = 64 * mlx.map.colonn;

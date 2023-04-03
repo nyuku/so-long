@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/03/16 14:48:57 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/03 10:29:21 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void print_map(char **map, int line_count) //checker map, print str par str
     i = 0;
     while (i < line_count)
     {
-        ft_printf("%s", map[i]);
+        ft_printf("%s\n", map[i]);
         i++;
     }
 }
@@ -76,23 +76,22 @@ int ft_count_line_map(char *map_sample) // compte nombre de ligne dans la map
 	close (fd);
 	return(count);
 }
-int check_map_ext(char **argv)
+int check_map_ext(char *argv)
 {
 	int i = 0;
-	ft_printf("le nom du doc: %s\n", argv[1]);
-	while(argv[1][i] != '\0')//pour aller a la fin du nom
+	while(argv[i] != '\0')//pour aller a la fin du nom
 	{
 		i++;
 	}
 	ft_printf("index:%d\n",i);
-	if ((argv[1][i-1] == 'r') && (argv[1][i-2] == 'e') && (argv[1][i-3] == 'b'))
+	if ((argv[i-1] == 'r') && (argv[i-2] == 'e') && (argv[i-3] == 'b'))
 	{
 		ft_printf("yepiiiie, bon format de map\n");
         return(0);
 	}
 	else
 	{
-        ft_printf("bouhhhhhh\n");
+        ft_printf("bouhhhhhh, mauvaise extension\n");
         return(1);
     }
 }
@@ -110,23 +109,23 @@ int check_rectangle(int largeur, int longueur)
     }
 }
 
-int check_wall_map(t_map *map)
+int check_wall_map(t_mlx *mlx)
 {
     int i = 0;
     int j = 0;
 
     // defini fin d'un bord
-    while (i < map->lines)
+    while (i < mlx->map.lines)
     {
         // check horizontale
-        if ((map->char_map[0][j] != 1) || (map->char_map[map->lines-1][j] != 1))
+        if ((mlx->map.char_map[0][j] != '1') || (mlx->map.char_map[(mlx->map.lines) - 1][j] != '1'))
         {
-            printf("mauvaise map\n");
-            return 1;
+            printf("mauvaise mapeuh, pas de  bordures\n");
+            return (1);
         }
 
         // check vertical
-        if ((map->char_map[i][0] != 1) || (map->char_map[i][map->colonn - 1] != 1))
+        if ((mlx->map.char_map[i][0] != '1') || (mlx->map.char_map[i][mlx->map.colonn - 1] != '1'))
         {
             printf("mauvaise map\n");
             return 1;
