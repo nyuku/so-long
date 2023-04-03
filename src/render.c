@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 11:27:19 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:04:40 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int render_player(t_mlx *mlx)
 
 	}
 }
-int render_exit(t_mlx *mlx)
+int render_exit(t_mlx *mlx)//render exit
 {
 	int i;
 	int j;
@@ -85,7 +85,6 @@ int render_exit(t_mlx *mlx)
 		}
 		j++;
 		i = 0;
-
 	}
 }
 	

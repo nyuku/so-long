@@ -14,6 +14,11 @@ int check_up(t_mlx *mlx)
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         // move.up = 1;
         printf("Up!\n");
+        if((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y))
+        {
+            mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
+            printf("exiit!\n");
+        }
     }
 }
 
@@ -29,6 +34,11 @@ int check_down(t_mlx *mlx)
         mlx->y += mlx->jump;
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x,mlx->y);	
         printf("Down!\n");
+        if((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y))
+        {
+            mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
+            printf("exiit!\n");
+        }
     }
 }
 int check_left(t_mlx *mlx)
@@ -43,6 +53,11 @@ int check_left(t_mlx *mlx)
         mlx->x -= mlx->jump;
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         printf("Left!\n");
+        if((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y))
+        {
+            mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
+            printf("exiit!\n");
+        }
     }
 }
 int check_right(t_mlx *mlx)
@@ -57,5 +72,6 @@ int check_right(t_mlx *mlx)
         mlx->x += mlx->jump;
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         printf("Right!\n");
+        
 }
 }

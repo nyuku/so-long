@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 11:23:11 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:28:25 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,18 @@
 
 int main(int argc, char **argv)
 {
-	// t_img	img;
 	t_mlx	mlx;
 	int fd;
-	// t_map	map;
-	// t_decor decor;
-	// t_move	*move;
-
-	//------init move------//
-	// move.up = 0;
-	// move.down = 0;
-	// move.right = 0;
-	// move.left = 0;
-	
-	// mlx.decor.p_path = "image/blop.xpm";
-	// mlx.decor.wall_path = "image/wall1.xpm";
-	// mlx.decor.background_path = "image/fond_bloc.xpm";
-
 	init_decor(&mlx);
-	
 	
 	if (argc != 2)
     {
         ft_printf("error,chemin a mettre: ./map/ *.ber\n");
         return(NULL);
 	}
-    ft_printf("\ngoood! : \nMap selectionnée: %s\n", argv[1]);
+	
+	//---- ouverture de la map - check ----//
 	check_map_ext(argv[1]);
-	
-	
-
-	//---- ouverture de la map ----//
 	fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
@@ -63,6 +44,8 @@ int main(int argc, char **argv)
 	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
 	check_rectangle(mlx.map.lines,mlx.map.colonn);
 	check_wall_map(&mlx);
+	check_one_exit(&mlx);
+
 	//------- init MLX ------//
 	mlx.win_height = 64 * mlx.map.lines;
 	mlx.win_width = 64 * mlx.map.colonn;
@@ -74,34 +57,22 @@ int main(int argc, char **argv)
 	mlx.decor.wall_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.wall_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.exit_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.exit_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.player_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.p_path, &mlx.img.img_width, &mlx.img.img_height);//doit stocker width et height qq part (64)
-	mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
+	//mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
 	if (!mlx.decor.player_ptr)
 	{
 		ft_putstr("error file image\n");
 		return(ERROR);
 	}
 	
-	//---position de l'image de notre perso sur la fenêtre, depart---//
-	//mlx.x = 255;
-	//mlx.y = 255;
-
-	// mlx.old_x = 0;//init
-	// mlx.old_y = 0;
-	
-	//----mettre image sur la fenêtre----//
-	// mlx_loop_hook(mlx.mlx_window_ptr, render, &mlx);
-	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.wall_ptr, 100, 100);// mur
 	render_wall_map(&mlx);
-	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.background_ptr, 300, 300);
-	//-----------player begin-------------//
-	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.player_ptr, mlx.x, mlx.y);//affiche le point depart
-	render_player(&mlx);
+	render_player(&mlx);//depart
 	render_exit(&mlx);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.check_ptr, 0, 128);
-	//---mouvements---//
+
+	//---init mouvements---//
 	mlx.jump = 64;
+	
 	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);//input clavier
-	//mlx_loop_hook(mlx.mlx_window_ptr, render,&mlx );//rhaaa...
+
 	mlx_loop(mlx.mlx_ptr);// a mettre a la fin pour boucler
 	
 	close (fd);

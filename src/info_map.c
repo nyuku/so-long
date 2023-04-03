@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/03 10:56:08 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:39:48 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,94 @@ int check_rectangle(int largeur, int longueur)
         return(1);
     }
 }
-int check_exit(t_mlx *mlx)
+int check_one_exit(t_mlx *mlx)
 {
-	
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while((j < (mlx->map.lines) ))
+	{
+		while(i < mlx->map.colonn )
+		{
+			if(mlx->map.char_map[j][i] == 'E')
+				return(0);
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+	printf("pas de sortie\n");
+	return(1);
+}
+int check_one_coin(t_mlx *mlx)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while((j < (mlx->map.lines) ))
+	{
+		while(i < mlx->map.colonn )
+		{
+			if(mlx->map.char_map[j][i] == 'C')
+				return(0);
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+	printf("pas de coins\n");
+	return(1);
+}
+int count_coins(t_mlx *mlx)
+{int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while((j < (mlx->map.lines) ))
+	{
+		while(i < mlx->map.colonn )
+		{
+			if(mlx->map.char_map[j][i] == 'C')
+				mlx.game.coins++;
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+	return(0);
+}
+int check_one_player(t_mlx *mlx)
+{
+	int i;
+	int j;
+	int count;
+
+	i = 0;
+	j = 0;
+	count = 0;
+	while((j < (mlx->map.lines) ))
+	{
+		while(i < mlx->map.colonn )
+		{
+			if(mlx->map.char_map[j][i] == 'P')
+				count++;
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+	if(count != 1)
+	{
+		printf("pas juste un player!! mauvaise map\n");
+		return(1);
+	}
+	else
+		return(0);
 }
 int check_wall_map(t_mlx *mlx)
 {

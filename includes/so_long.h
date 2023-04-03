@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 11:26:29 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:34:16 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_game
 	int	exit;
 	int player;
 	int moves;
+	int coins;
 	
 	
 } t_game;
@@ -154,18 +155,26 @@ int	count_colonn(char **str);//compte colonne map
 void print_map(char **map, int line_count); //checker map, print str par str
 char **ft_harvest_map(char *map_sample); // recolte la map en str
 int ft_count_line_map(char *map_sample); // compte nombre de ligne dans la map
-void	draw_personnage(void *mlx_ptr, void *window_ptr);
-void erase_personnage(void *mlx_ptr, void *win_ptr);
+int count_coins(t_mlx *mlx);
+//------------Check -------------//
 int check_map_ext(char *argv);
 int check_rectangle(int largeur, int longueur);
 int check_wall_map(t_mlx *mlx);
-void render_wall_map(t_mlx *mlx);
-int render_player(t_mlx *mlx);
+
 int check_up(t_mlx *mlx);
 int check_down(t_mlx *mlx);
 int check_right(t_mlx *mlx);
 int check_left(t_mlx *mlx);
+
+int check_one_exit(t_mlx *mlx);
+int	check_one_coin(t_mlx *mlx);
+int check_one_player(t_mlx *mlx);
+
+//-------- render -----------//
 int render_exit(t_mlx *mlx);
+void render_wall_map(t_mlx *mlx);
+int render_player(t_mlx *mlx);
+
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);
 
