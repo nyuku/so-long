@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 09:51:32 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 11:23:11 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int main(int argc, char **argv)
 	//-------init_decor-charger image-----//;
 	mlx.decor.background_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.background_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.wall_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.wall_path, &mlx.img.img_width, &mlx.img.img_height);
+	mlx.decor.exit_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.exit_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.player_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.p_path, &mlx.img.img_width, &mlx.img.img_height);//doit stocker width et height qq part (64)
 	mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
 	if (!mlx.decor.player_ptr)
@@ -95,6 +96,7 @@ int main(int argc, char **argv)
 	//-----------player begin-------------//
 	//mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.player_ptr, mlx.x, mlx.y);//affiche le point depart
 	render_player(&mlx);
+	render_exit(&mlx);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.decor.check_ptr, 0, 128);
 	//---mouvements---//
 	mlx.jump = 64;

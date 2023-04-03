@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 16:52:16 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:27:19 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,30 @@ int render_player(t_mlx *mlx)
 
 	}
 }
+int render_exit(t_mlx *mlx)
+{
+	int i;
+	int j;
 
+	i = 0;
+	j = 0;
+	while((j < (mlx->map.lines) ))
+	{
+		while(i < mlx->map.colonn )
+		{
+			if(mlx->map.char_map[j][i] == 'E')
+			{
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.exit_ptr, (i * 64), (j * 64));
+				mlx->exit_y = (j * 64);
+				mlx->exit_x = (i * 64);
+				printf("exit set up!\n");
+				return(0);
+			}
+			i++;
+		}
+		j++;
+		i = 0;
+
+	}
+}
 	

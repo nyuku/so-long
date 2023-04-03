@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/03 10:29:21 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 10:56:08 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ int check_rectangle(int largeur, int longueur)
         return(1);
     }
 }
-
+int check_exit(t_mlx *mlx)
+{
+	
+}
 int check_wall_map(t_mlx *mlx)
 {
     int i = 0;

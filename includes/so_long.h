@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 09:56:26 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 11:26:29 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,14 @@ typedef struct s_decor
 	char *p_path;
 	char *wall_path;
 	char *check_path;
+	char *exit_path;
+	
 	//----ptr-----//
 	void *background_ptr;
 	void *wall_ptr;
 	void *player_ptr;
 	void *check_ptr;
+	void *exit_ptr;
 	// void *wall_right;
 	// void *wall_up;
 	// void *wall_down;
@@ -133,8 +136,8 @@ typedef struct s_mlx
 	
 	int x;
 	int y;
-	int old_x;
-	int old_y;
+	int exit_x;
+	int exit_y;
 	int jump;
 
 
@@ -162,6 +165,7 @@ int check_up(t_mlx *mlx);
 int check_down(t_mlx *mlx);
 int check_right(t_mlx *mlx);
 int check_left(t_mlx *mlx);
+int render_exit(t_mlx *mlx);
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);
 

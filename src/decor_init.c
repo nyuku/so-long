@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decor_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:20 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/24 14:39:28 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:07:50 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void init_decor(t_mlx *mlx)
 	mlx->decor.wall_path = "image/wall1.xpm";
 	mlx->decor.background_path = "image/fond_bloc.xpm";
 	mlx->decor.check_path = "image/check.xpm";
+	mlx->decor.exit_path = "image/exit.xpm";
 	
 	//ptr pour xpm
 
