@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 15:04:40 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:50:22 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,28 @@ int render_exit(t_mlx *mlx)//render exit
 		i = 0;
 	}
 }
+
+void	render_coins(t_mlx *mlx)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while((j < (mlx->map.lines) /*i < mlx->map.colonn*/))//fin du tableau
+	{
+		while(i < mlx->map.colonn /*j < mlx->map.lines*/)
+		{
+			if(mlx->map.char_map[j][i] == 'C')
+			{
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.check_ptr, (i * 64), (j * 64));
+				printf("coins\n");
+			}
+			i++;
+		}
+		j++;
+		i = 0;
+
+	}
 	
+}

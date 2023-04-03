@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/03 15:39:48 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:20:14 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,17 +151,18 @@ int check_one_coin(t_mlx *mlx)
 	return(1);
 }
 int count_coins(t_mlx *mlx)
-{int i;
+{
+	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while((j < (mlx->map.lines) ))
+	while(j < mlx->map.lines)
 	{
 		while(i < mlx->map.colonn )
 		{
 			if(mlx->map.char_map[j][i] == 'C')
-				mlx.game.coins++;
+				mlx->game.coins++;
 			i++;
 		}
 		j++;

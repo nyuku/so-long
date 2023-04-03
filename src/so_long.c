@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 15:28:25 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:20:43 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,16 @@ int main(int argc, char **argv)
 	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
 	check_rectangle(mlx.map.lines,mlx.map.colonn);
 	check_wall_map(&mlx);
+
 	check_one_exit(&mlx);
+	check_one_player(&mlx);
+	check_one_coin(&mlx);
+	mlx.game.coins = 0;//init
+	mlx.game.coins_count = 0;
+	count_coins(&mlx);
+	printf("nombre de coins:%i\n",mlx.game.coins);
+	
+
 
 	//------- init MLX ------//
 	mlx.win_height = 64 * mlx.map.lines;
@@ -57,7 +66,7 @@ int main(int argc, char **argv)
 	mlx.decor.wall_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.wall_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.exit_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.exit_path, &mlx.img.img_width, &mlx.img.img_height);
 	mlx.decor.player_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.p_path, &mlx.img.img_width, &mlx.img.img_height);//doit stocker width et height qq part (64)
-	//mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
+	mlx.decor.check_ptr =  mlx_xpm_file_to_image(mlx.mlx_ptr, mlx.decor.check_path, &mlx.img.img_width, &mlx.img.img_height);
 	if (!mlx.decor.player_ptr)
 	{
 		ft_putstr("error file image\n");
@@ -67,6 +76,7 @@ int main(int argc, char **argv)
 	render_wall_map(&mlx);
 	render_player(&mlx);//depart
 	render_exit(&mlx);
+	render_coins(&mlx);
 
 	//---init mouvements---//
 	mlx.jump = 64;

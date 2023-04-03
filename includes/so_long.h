@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 15:34:16 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:16:28 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_game
 	int player;
 	int moves;
 	int coins;
+	int coins_count;
 	
 	
 } t_game;
@@ -112,9 +113,7 @@ typedef struct s_decor
 	void *player_ptr;
 	void *check_ptr;
 	void *exit_ptr;
-	// void *wall_right;
-	// void *wall_up;
-	// void *wall_down;
+
 }	t_decor;
 
 
@@ -128,6 +127,7 @@ typedef struct s_mlx
 	t_img	img;
 	t_move	move;
 	t_map	map;
+	t_game	game;
 	//t_move	jump;
 	int	win_height;
 	int	win_width;
@@ -174,6 +174,7 @@ int check_one_player(t_mlx *mlx);
 int render_exit(t_mlx *mlx);
 void render_wall_map(t_mlx *mlx);
 int render_player(t_mlx *mlx);
+void	render_coins(t_mlx *mlx);
 
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);
