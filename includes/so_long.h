@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 18:16:28 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:44:44 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,19 @@
                               MACRO window
 \*◇───────────────────────────────────────────────────────────────◇*/
 # define ERROR 1
-# define WIN_H 383
-# define WIN_W 511
-// # define IMG_PIXEL 32
-/*◇───────────────────────────────────────────────────────────────◇*\
-                              MACRO graphic
-\*◇───────────────────────────────────────────────────────────────◇*/
-# define WALL "./image/wall1.xpm"
-# define MONSTER "./image/blop.xpm"
 
-/*◇───────────────────────────────────────────────────────────────◇*\
-                          	   Move
-\*◇───────────────────────────────────────────────────────────────◇*/
-typedef struct s_move
-{
-	int up;
-	int down;
-	int right;
-	int left;
-}	t_move;
+// # define IMG_PIXEL 32
+
 /*◇───────────────────────────────────────────────────────────────◇*\
                           	   Game
 \*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_game
 {
-	int	loot;
 	int	exit;
 	int player;
-	int moves;
 	int coins;
 	int coins_count;
+	int steps;
 	
 	
 } t_game;
@@ -76,11 +59,9 @@ typedef struct s_game
 \*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_map
 {
-	int	i;
 	char **char_map;
 	int lines;
 	int colonn;
-	int count_mouv;
 	
 }	t_map;
 
@@ -89,7 +70,6 @@ typedef struct s_map
 \*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_img
 {
-	//void	*newimage_ptr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -125,10 +105,8 @@ typedef struct s_mlx
 {
 	t_decor	decor;
 	t_img	img;
-	t_move	move;
 	t_map	map;
 	t_game	game;
-	//t_move	jump;
 	int	win_height;
 	int	win_width;
 	void	*mlx_ptr;
@@ -156,6 +134,7 @@ void print_map(char **map, int line_count); //checker map, print str par str
 char **ft_harvest_map(char *map_sample); // recolte la map en str
 int ft_count_line_map(char *map_sample); // compte nombre de ligne dans la map
 int count_coins(t_mlx *mlx);
+int check_only_PEC01(t_mlx *mlx);
 //------------Check -------------//
 int check_map_ext(char *argv);
 int check_rectangle(int largeur, int longueur);
@@ -175,6 +154,7 @@ int render_exit(t_mlx *mlx);
 void render_wall_map(t_mlx *mlx);
 int render_player(t_mlx *mlx);
 void	render_coins(t_mlx *mlx);
+void	print_steps(t_mlx *mlx);
 
  //--------decor_init.c------//
 void init_decor(t_mlx *mlx);

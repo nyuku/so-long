@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 18:20:43 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:21:08 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 	mlx.map.char_map = ft_harvest_map(argv[1]);//stock la str..?
 	mlx.map.colonn = count_colonn(mlx.map.char_map);
 	print_map(mlx.map.char_map, mlx.map.lines);
+	check_only_PEC01(&mlx);
 	ft_printf("map nombre de lignes: %d\n",mlx.map.lines);
 	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
 	check_rectangle(mlx.map.lines,mlx.map.colonn);
@@ -48,8 +49,14 @@ int main(int argc, char **argv)
 	check_one_exit(&mlx);
 	check_one_player(&mlx);
 	check_one_coin(&mlx);
+	
+	
+
+	// ---init----//
 	mlx.game.coins = 0;//init
 	mlx.game.coins_count = 0;
+	mlx.game.steps = 0;
+	print_steps(&mlx);
 	count_coins(&mlx);
 	printf("nombre de coins:%i\n",mlx.game.coins);
 	

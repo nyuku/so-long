@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/03 18:20:14 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:32:57 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int check_map_ext(char *argv)
 	{
 		i++;
 	}
-	ft_printf("index:%d\n",i);
 	if ((argv[i-1] == 'r') && (argv[i-2] == 'e') && (argv[i-3] == 'b'))
 	{
 		ft_printf("yepiiiie, bon format de map\n");
@@ -225,6 +224,31 @@ int check_wall_map(t_mlx *mlx)
 
     printf("map valide\n");
     return 0;
+}
+int check_only_PEC01(t_mlx *mlx)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(j < mlx->map.lines )
+	{
+		while(i < mlx->map.colonn )
+		{
+			if((mlx->map.char_map[j][i] == 'P') || (mlx->map.char_map[j][i] == 'E')||(mlx->map.char_map[j][i] == 'C')||(mlx->map.char_map[j][i] == '0')||(mlx->map.char_map[j][i] == '1') )
+				i++;
+			else
+			{
+				printf("PAAAS que peco01\n");
+				return(1);
+			}
+		}
+		j++;
+		i = 0;
+	}
+	printf("que peco01\n");
+	return(0);
 }
 /*-----------------------------------\*
          MAIN test les fonctions map

@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:33:44 by angela            #+#    #+#             */
-/*   Updated: 2023/03/24 14:31:59 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:42:43 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	key_hook(int keycode, t_mlx *mlx) // notre fonction de key input
 {
-	if((mlx->y <= WIN_H) || mlx->x <= WIN_W)
+	if((mlx->y <= mlx->win_height) || mlx->x <= mlx->win_width)
 	{
 		if (keycode == KEY_UP)
 			check_up(mlx);

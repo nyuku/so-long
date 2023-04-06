@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/03 17:50:22 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:03:15 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void render_wall_map(t_mlx *mlx)
 			if(mlx->map.char_map[j][i] == '1')
 			{
 				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.wall_ptr, (i * 64), (j * 64));
-				printf("ploooop\n");
 			}
 			i++;
 		}
@@ -87,7 +86,10 @@ int render_exit(t_mlx *mlx)//render exit
 		i = 0;
 	}
 }
-
+void	print_steps(t_mlx *mlx)
+{
+	ft_printf("Steps: %d\n", mlx->game.steps);
+}
 void	render_coins(t_mlx *mlx)
 {
 	int i;

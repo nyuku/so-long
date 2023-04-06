@@ -3,17 +3,18 @@
 
 int check_up(t_mlx *mlx)
 {
-    if ((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == '1')
+    if ((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == '1')//empeche foncer mur, d'aller dans else
     {
         printf("mur haut\n");
     }
-    if (((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == 'E') && (mlx->game.coins_count < mlx->game.coins))
+    else if (((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == 'E') && (mlx->game.coins_count < mlx->game.coins))
     {
         printf("pas encore\n");
     }
     else
     {
-        if((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == 'C')
+        
+		if((mlx->map.char_map[(mlx->y / 64) - 1][mlx->x / 64]) == 'C')
         {
             mlx->game.coins_count++;
             printf("tichiiin\n");
@@ -21,9 +22,11 @@ int check_up(t_mlx *mlx)
        
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.background_ptr, mlx->x, mlx->y);
         mlx->y -= mlx->jump;
+		mlx->game.steps++;
+		print_steps(mlx);
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         // move.up = 1;
-        printf("Up!\n");
+        //printf("Up!\n");
         
         if(((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y)) && (mlx->game.coins_count == mlx->game.coins))
         {
@@ -39,7 +42,7 @@ int check_down(t_mlx *mlx)
     {
         printf("mur bas\n");
     }
-    if (((mlx->map.char_map[(mlx->y / 64) + 1][mlx->x / 64]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
+	else if (((mlx->map.char_map[(mlx->y / 64) + 1][mlx->x / 64]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
     {
         printf("not yet\n");
     }
@@ -52,6 +55,8 @@ int check_down(t_mlx *mlx)
         }
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.background_ptr, mlx->x, mlx->y);
         mlx->y += mlx->jump;
+		mlx->game.steps++;
+		print_steps(mlx);
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x,mlx->y);	
         printf("Down!\n");
         if(((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y))&& (mlx->game.coins_count == mlx->game.coins))
@@ -67,7 +72,7 @@ int check_left(t_mlx *mlx)
     {
         printf("mur gauche\n");
     }
-    if (((mlx->map.char_map[mlx->y / 64][(mlx->x / 64) - 1]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
+	else if (((mlx->map.char_map[mlx->y / 64][(mlx->x / 64) - 1]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
     {
         printf("not yeeet\n");
     }
@@ -80,6 +85,8 @@ int check_left(t_mlx *mlx)
         }
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.background_ptr, mlx->x, mlx->y);
         mlx->x -= mlx->jump;
+		mlx->game.steps++;
+		print_steps(mlx);
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         printf("Left!\n");
         if(((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y))&& (mlx->game.coins_count == mlx->game.coins))
@@ -95,7 +102,7 @@ int check_right(t_mlx *mlx)
     {
         printf("mur droit\n");
     }
-    if (((mlx->map.char_map[mlx->y / 64][(mlx->x / 64) + 1]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
+   else if (((mlx->map.char_map[mlx->y / 64][(mlx->x / 64) + 1]) == 'E')&& (mlx->game.coins_count < mlx->game.coins))
     {
         printf("naaaaa pas encore\n");
     }
@@ -108,6 +115,8 @@ int check_right(t_mlx *mlx)
         }
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.background_ptr, mlx->x, mlx->y);
         mlx->x += mlx->jump;
+		mlx->game.steps++;
+		print_steps(mlx);
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, mlx->x, mlx->y);	
         printf("Right!\n");
         if(((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y)) && (mlx->game.coins_count == mlx->game.coins))
@@ -115,5 +124,5 @@ int check_right(t_mlx *mlx)
             mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
             printf("exiit!\n");
         }
-}
+	}
 }
