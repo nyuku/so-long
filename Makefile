@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: angela <angela@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 00:00:00 by angnguye          #+#    #+#              #
-#    Updated: 2023/03/23 22:45:44 by angnguye         ###   ########.fr        #
+#    Updated: 2023/04/08 03:22:41 by angela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRC				= ./src/so_long.c \
 				 ./src/key_hook.c \
 				 ./src/decor_init.c \
 				 ./src/render.c \
-				 ./src/move.c
+				 ./src/move.c \
+				 ./src/game_init.c \
+				 ./src/path_finding.c 
 
 LIB				= ./includes/so_long.h
 MAKEMLX			= ${MAKE} -C ${MLX}

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 22:22:45 by angnguye          #+#    #+#             */
-/*   Updated: 2023/03/18 17:51:39 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:49:16 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_move move;
+void player_xy(t_mlx *mlx, t_point p)//converti les coordonnées pour naviguer tableau
+{
+    p.player_i = mlx->x / 64;
+    p.player_j = mlx->y / 64;
+  
+}
 
-// move.up = 0;
-// move.down = 0;
-// move.right = 0;
-// move.left = 0;

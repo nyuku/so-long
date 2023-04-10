@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/06 16:21:08 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/08 03:43:03 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int main(int argc, char **argv)
 	mlx.map.char_map = ft_harvest_map(argv[1]);//stock la str..?
 	mlx.map.colonn = count_colonn(mlx.map.char_map);
 	print_map(mlx.map.char_map, mlx.map.lines);
+
+
+
 	check_only_PEC01(&mlx);
 	ft_printf("map nombre de lignes: %d\n",mlx.map.lines);
 	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
@@ -85,6 +88,7 @@ int main(int argc, char **argv)
 	render_exit(&mlx);
 	render_coins(&mlx);
 
+	player_xy(&mlx); // recupe coordonée pour lire tableau
 	//---init mouvements---//
 	mlx.jump = 64;
 	

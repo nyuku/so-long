@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/06 16:44:44 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:48:15 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,13 @@
 # define ERROR 1
 
 // # define IMG_PIXEL 32
-
+/*◇───────────────────────────────────────────────────────────────◇*\
+                        Coordonnées finding_path
+\*◇───────────────────────────────────────────────────────────────◇*/
+typedef struct s_point {
+	size_t	player_j;
+	size_t	player_i;
+}				t_point;
 /*◇───────────────────────────────────────────────────────────────◇*\
                           	   Game
 \*◇───────────────────────────────────────────────────────────────◇*/
@@ -50,6 +56,8 @@ typedef struct s_game
 	int coins;
 	int coins_count;
 	int steps;
+	int player_i;
+	int player_j;
 	
 	
 } t_game;
@@ -107,6 +115,7 @@ typedef struct s_mlx
 	t_img	img;
 	t_map	map;
 	t_game	game;
+	t_point	p;
 	int	win_height;
 	int	win_width;
 	void	*mlx_ptr;
@@ -122,6 +131,9 @@ typedef struct s_mlx
 
 }	t_mlx;
 
+
+ //--------game_init.c------//
+void player_xy(t_mlx *mlx);
  //--------Key_hook.c------//
 int	key_hook(int keycode, t_mlx *mlx);
 
