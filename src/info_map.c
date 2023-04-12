@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/06 16:32:57 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:34:07 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,25 @@ int check_map_ext(char *argv)
         return(1);
     }
 }
-int check_rectangle(int largeur, int longueur)
+int check_rectangle(char **str, int largeur, int longueur)//check toutes les lignes de la meme longueur
 {
-    if (largeur != longueur)
-    {
-        ft_printf("c'est un rectangle\n");
-        return(0);
-    }
-    else
-    {
-        ft_printf("carré!!nope");
-        return(1);
-    }
+    int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(j < largeur)
+	{
+		if(strlen(str[j]) == longueur)
+			j++;
+		else
+		{
+			ft_printf("nope pas rectagnle\n");
+			return(1);
+		}
+	}
+	ft_printf("c'est un rectangle\n");
+	return(0);
 }
 int check_one_exit(t_mlx *mlx)
 {

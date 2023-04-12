@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/10 11:48:15 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/12 12:35:45 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ typedef struct s_mlx
 
 }	t_mlx;
 
-
+ //--------path_finding.c------//
+int path_finding(t_point p,t_mlx *mlx);
  //--------game_init.c------//
 void player_xy(t_mlx *mlx);
  //--------Key_hook.c------//
@@ -149,7 +150,7 @@ int count_coins(t_mlx *mlx);
 int check_only_PEC01(t_mlx *mlx);
 //------------Check -------------//
 int check_map_ext(char *argv);
-int check_rectangle(int largeur, int longueur);
+int check_rectangle(char **str, int largeur, int longueur);
 int check_wall_map(t_mlx *mlx);
 
 int check_up(t_mlx *mlx);
