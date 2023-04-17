@@ -19,7 +19,6 @@ int check_up(t_mlx *mlx)
             mlx->game.coins_count++;
             printf("tichiiin\n");
         }
-       
         mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.background_ptr, mlx->x, mlx->y);
         mlx->y -= mlx->jump;
 		mlx->game.steps++;

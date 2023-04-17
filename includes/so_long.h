@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/12 12:35:45 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/13 17:24:26 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ typedef struct s_game
 typedef struct s_map
 {
 	char **char_map;
+	char **tableau_check;
 	int lines;
 	int colonn;
+	int exit_count;
+	int coins_count;
 	
 }	t_map;
 
@@ -135,6 +138,7 @@ typedef struct s_mlx
 int path_finding(t_point p,t_mlx *mlx);
  //--------game_init.c------//
 void player_xy(t_mlx *mlx);
+int creat_path_finding_check(t_mlx *mlx);
  //--------Key_hook.c------//
 int	key_hook(int keycode, t_mlx *mlx);
 

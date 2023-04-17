@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/12 12:45:05 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:53:11 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ int main(int argc, char **argv)
 	print_map(mlx.map.char_map, mlx.map.lines);
 
 
-
-	check_only_PEC01(&mlx);
-	ft_printf("map nombre de lignes: %d\n",mlx.map.lines);
-	ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
+	//!!! en silence
+	//check_only_PEC01(&mlx);
+	//ft_printf("map nombre de lignes: %d\n",mlx.map.lines);
+	//ft_printf("nombre de colonne map %d\n", mlx.map.colonn);
 	check_rectangle(mlx.map.char_map,mlx.map.lines,mlx.map.colonn);
 	check_wall_map(&mlx);
 
-	check_one_exit(&mlx);
-	check_one_player(&mlx);
-	check_one_coin(&mlx);
+	// check_one_exit(&mlx);
+	// check_one_player(&mlx);
+	// check_one_coin(&mlx);
 	
 	
 
@@ -60,9 +60,9 @@ int main(int argc, char **argv)
 	mlx.game.coins = 0;//init
 	mlx.game.coins_count = 0;
 	mlx.game.steps = 0;
-	print_steps(&mlx);
-	count_coins(&mlx);
-	printf("nombre de coins:%i\n",mlx.game.coins);
+	// print_steps(&mlx);
+	// count_coins(&mlx);
+	// printf("nombre de coins:%i\n",mlx.game.coins);
 	
 
 
@@ -86,16 +86,20 @@ int main(int argc, char **argv)
 	
 	render_wall_map(&mlx);
 	render_player(&mlx);//depart
-	//----------------pathfingding--------------// ici LOlo d'amouuuur
-	player_xy(&mlx);//prend coordonné
-	path_finding(mlx->p,&mlx);
-	printf("path_finding: %d\n",path_finding(&mlx.p,&mlx));
+	
 	
 	//----------------------------
 	render_exit(&mlx);
 	render_coins(&mlx);
 
-	player_xy(&mlx); // recupe coordonée pour lire tableau
+
+	//----------------pathfingding--------------// ici LOlo d'amouuuur
+	mlx.map.exit_count = 0;
+	mlx.map.coins_count = 0;
+	creat_path_finding_check(&mlx);//coucou amandine
+	player_xy(&mlx);//prend coordonné//coucou coco
+	path_finding(mlx.p,&mlx);
+	// printf("path_finding: %d\n",path_finding(&mlx.p,&mlx));
 	//---init mouvements---//
 	mlx.jump = 64;
 	

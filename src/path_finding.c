@@ -6,36 +6,50 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:58:35 by angela            #+#    #+#             */
-/*   Updated: 2023/04/12 12:21:33 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:21:30 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+//faut init tableau_check ailleirs et les compteurs pour exit et item
 int path_finding(t_point p,t_mlx *mlx)//entré coodonné model
-{
-    int item;
-    int exit;
-    char **tableau_check;
-
-    item = 0;
-    exit = 0;
-    //on check case actuel 
-    //player_xy(t_mlx *mlx, t_point p) faut mettre ici ou dans le so_long.c?
-
-    tableau_check = malloc(sizeof(char *)*(mlx->map.lines));
-	if (!tableau_check)
-    	return(NULL);
-        
+{    
     // -------check la case actuel-----//
     //permet de lancer l/algo
     //if wall and if visited
-    if ((mlx->map.char_map[p.player_j][p.player_i] == '1') || \
-        ((tableau_check[p.player_j][p.player_i]) == 'v'))
+    printf("p.player_j: %d | p.player_i: %d \n", p.player_j, p.player_i);
+
+    if (((mlx->map.char_map[p.player_j][p.player_i]) == '1') || 
+        ((mlx->map.tableau_check[p.player_j][p.player_i]) == 'v') || p.player_j < 0 || p.player_i < 0 ||  p.player_j > mlx->map.lines || p.player_i > mlx->map.colonn)
         return(1);
+    
+    printf("after check\n");
+    mlx->map.tableau_check[p.player_j][p.player_i] == 'v';// marqueur
+    if ((mlx->map.char_map[p.player_j][p.player_i]) == 'E')
+    {
+        printf("Exit\n");
+        mlx->map.exit_count = 1;
+    }
+       
+    if ((mlx->map.char_map[p.player_j][p.player_i]) == 'C'){
+        // printf("p.player_j: %d | p.player_i: %d \n", p.player_j, p.player_i);
+        mlx->map.coins_count++;
+    }
+    // printf("p.player_j: %d | p.player_i: %d \n", p.player_j, p.player_i);
+
     path_finding((t_point){p.player_j-1,p.player_i}, mlx);
+    printf("p.player_j-1: %d\n", p.player_j-1);
+
     path_finding((t_point){p.player_j+1,p.player_i}, mlx);
+    printf("p.player_j+1: %d\n", p.player_j+1);
+
     path_finding((t_point){p.player_j,p.player_i-1}, mlx);
-    path_finding((t_point){p.player_j,p.player_i+1}, mlx);   
+    printf("p.player_i-1: %d\n", p.player_i-1);
+
+    path_finding((t_point){p.player_j,p.player_i+1}, mlx);
+    printf("p.player_i-1: %d\n", p.player_i-1);
+
+    printf("End check_path\n");   
     return(0);
 }
 

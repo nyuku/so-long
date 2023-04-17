@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:46:50 by angela            #+#    #+#             */
-/*   Updated: 2023/04/12 12:34:07 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/12 17:34:29 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ char **ft_harvest_map(char *map_sample) // recolte la map en str
 	char **tableau_stock;
 	char *line; //récupérer ce qu'a lu gnl
 	int i; //index tableau
+	i = 0; // rajout
 
 	fd = open(map_sample, O_RDONLY);
 	line_map = ft_count_line_map(map_sample);
 
-	tableau_stock = malloc(sizeof(char *)*(line_map));
+	tableau_stock = malloc(sizeof(char *)*(line_map + 1));
 	if (!tableau_stock)
 		return(NULL);
 	while(i < line_map)
@@ -96,18 +97,19 @@ int check_map_ext(char *argv)
 }
 int check_rectangle(char **str, int largeur, int longueur)//check toutes les lignes de la meme longueur
 {
-    int i;
 	int j;
 
-	i = 0;
 	j = 0;
 	while(j < largeur)
 	{
-		if(strlen(str[j]) == longueur)
+		
+		if((strlen(str[j])) == longueur + 1)
+		{
 			j++;
+		}
 		else
 		{
-			ft_printf("nope pas rectagnle\n");
+			ft_printf("nope pas rectangle\n");
 			return(1);
 		}
 	}
