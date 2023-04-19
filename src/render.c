@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:07:59 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/06 16:03:15 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:12:33 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int render_player(t_mlx *mlx)
 				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, mlx->decor.player_ptr, (i * 64), (j * 64));
 				mlx->y = (j * 64);
 				mlx->x = (i * 64);
-				printf("new player!\n");
+				printf("new player!i: %d j :%d\n",i,j);
 				return(0);
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/17 15:53:11 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/19 12:18:12 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int main(int argc, char **argv)
 	
 	render_wall_map(&mlx);
 	render_player(&mlx);//depart
+	
 	
 	
 	//----------------------------

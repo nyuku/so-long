@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 22:22:45 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/13 17:42:18 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:28:26 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void player_xy(t_mlx *mlx)//converti les coordonnées pour naviguer tableau
 {
     mlx->p.player_i = mlx->x / 64;
     mlx->p.player_j = mlx->y / 64;
-    printf("coucou je suis Corentin\n");
+    printf("coordonée du player :coordonnée i : %d\n coordonnée j : %d\n",mlx->p.player_i, mlx->p.player_j );
 
   
 }
