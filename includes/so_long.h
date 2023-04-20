@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <unistd.h>
-# include "mlx.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include <fcntl.h> // pour open

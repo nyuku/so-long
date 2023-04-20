@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-exit_game(t_mlx *mlx)
+void exit_game(t_mlx *mlx)
 {
 	free(mlx->map.char_map);
-
 }

@@ -103,7 +103,7 @@ int check_rectangle(char **str, int largeur, int longueur)//check toutes les lig
 	while(j < largeur)
 	{
 		
-		if((strlen(str[j])) == longueur + 1)
+		if((ft_strlen(str[j])) == longueur + 1)
 		{
 			j++;
 		}

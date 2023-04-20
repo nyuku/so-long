@@ -16,23 +16,24 @@ void player_xy(t_mlx *mlx)//converti les coordonnées pour naviguer tableau
 {
     mlx->p.player_i = mlx->x / 64;
     mlx->p.player_j = mlx->y / 64;
-    printf("coordonée du player :coordonnée i : %d\n coordonnée j : %d\n",mlx->p.player_i, mlx->p.player_j );
+    printf("coordonée du player :coordonnée i : %zu\n coordonnée j : %zu\n",mlx->p.player_i, mlx->p.player_j );
 
-  
+
 }
 int creat_path_finding_check(t_mlx *mlx)
 {
     int i;
 
-    i = 0;
     mlx->map.tableau_check = malloc(sizeof(char *)*(mlx->map.lines));
 	if (!mlx->map.tableau_check)
-    	return(NULL);
+    	return(0);
     printf("coucou je suis Amandine\n");
-    // while(i < mlx->map.lines)
-	// {
-	// 	bzero(mlx->map.tableau_check[i], mlx->map.colonn);
-    //     i++;
-	// }
+
+	i = 0;
+     while(i < mlx->map.lines)
+	 {
+	 	mlx->map.tableau_check[i] = malloc( sizeof(char) * mlx->map.colonn);
+		 i++;
+	 }
     return(0);
 }

@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 	mlx.game.coins_count = 0;
 	mlx.game.steps = 0;
 	// print_steps(&mlx);
-	// count_coins(&mlx);
+	 count_coins(&mlx);
 	// printf("nombre de coins:%i\n",mlx.game.coins);
 	
 
@@ -100,6 +100,11 @@ int main(int argc, char **argv)
 	creat_path_finding_check(&mlx);//coucou amandine
 	player_xy(&mlx);//prend coordonné//coucou coco
 	path_finding(mlx.p,&mlx);
+	if (mlx.map.coins_count != mlx.game.coins || mlx.map.exit_count != 1) {
+		printf("found: %d, num: %d, exit: %d\n", mlx.map.coins_count, mlx.game.coins, mlx.map.exit_count);
+		printf("Error: Path\n");
+		return(1);
+	}
 	// printf("path_finding: %d\n",path_finding(&mlx.p,&mlx));
 	//---init mouvements---//
 	mlx.jump = 64;
