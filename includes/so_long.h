@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/13 17:24:26 by angela           ###   ########.fr       */
+/*   Updated: 2023/04/23 04:37:44 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,76 +16,78 @@
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
-# include <fcntl.h> // pour open
-#include <stdlib.h> // exit
+# include <fcntl.h>
+# include <stdlib.h>
 
 /*◇───────────────────────────────────────────────────────────────◇*\
-                              MACRO key
+							  MACRO key
 \*◇───────────────────────────────────────────────────────────────◇*/
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
+
 # define KEY_UP 126
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 # define KEY_ESC 53
-# define KEY_r 82
-# define X_BTN 17
+# define JUMP 64
 /*◇───────────────────────────────────────────────────────────────◇*\
-                              MACRO window
+ *  MACRO ERROR
 \*◇───────────────────────────────────────────────────────────────◇*/
-# define ERROR 1
+# define ERROR_EXT "Bad hair day, Mauvaise extension"
+# define ERROR_PEC01 "Puni! Caractères non autorisés"
+# define ERROR_RECTANGLE "Ceci n'est pas un rectangle"
+# define ERROR_WALL "La carte peut pas faire dodo, elle est mal bordée"
+# define ERROR_EXIT "C'est par où la sortie?"
+# define ERROR_PLAYER "C'est un jeu monoplace!"
+# define ERROR_COINS "Picsou devait passer"
+# define ERROR_EMPTY "Fichier vide!"
 
-// # define IMG_PIXEL 32
-/*◇───────────────────────────────────────────────────────────────◇*\
-                        Coordonnées finding_path
-\*◇───────────────────────────────────────────────────────────────◇*/
-typedef struct s_point {
+typedef struct s_img
+{
+	size_t	player_j;
+	char	player_i;
+	int		img_width;
+	int		img_height;
+	int		img_x;
+	int		img_y;
+}				t_img;
+
+typedef struct s_point
+{
 	size_t	player_j;
 	size_t	player_i;
-}				t_point;
-/*◇───────────────────────────────────────────────────────────────◇*\
-                          	   Game
-\*◇───────────────────────────────────────────────────────────────◇*/
-typedef struct s_game
+}				t_img;
+
+typedef	struct	s_game
 {
-	int	exit;
-	int player;
-	int coins;
-	int coins_count;
-	int steps;
-	int player_i;
-	int player_j;
-	
-	
+	int		exit;
+	int		player;
+	int		coins;
+	int		coins_count;
+	int		coins_path_count;
+	int		steps;
+	int		player_i;
+	int		player_j;
 } t_game;
 
-/*◇───────────────────────────────────────────────────────────────◇*\
-                       Pour map
-\*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_map
 {
-	char **char_map;
-	char **tableau_check;
-	int lines;
-	int colonn;
-	int exit_count;
-	int coins_count;
-	
+	char	**char_map;
+	char	**tableau_check;
+	int		lines;
+	int		colonn;
+	int		exit_count;
 }	t_map;
 
-/*◇───────────────────────────────────────────────────────────────◇*\
-                       Pour afficher image 
+/*◇───────────────────────────────────────────────────────────────◇*
+ * Pour afficher image
 \*◇───────────────────────────────────────────────────────────────◇*/
 typedef struct s_img
 {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int	img_width;//xmp
-	int	img_height;//xpm
+	int		img_width;
+	int		img_height;
 }	t_img;
 
 typedef struct s_decor
@@ -109,7 +111,7 @@ typedef struct s_decor
 
 
 /*◇───────────────────────────────────────────────────────────────◇*\
-                       Pour afficher mlx 
+ * Pour afficher mlx
 \*◇───────────────────────────────────────────────────────────────◇*/
 
 typedef struct s_mlx
@@ -130,50 +132,60 @@ typedef struct s_mlx
 	int exit_x;
 	int exit_y;
 	int jump;
-
-
+	int error_trigger;
 }	t_mlx;
-
+//---------so_long.c-----//
+int	 	openfile(char *s);	
+ //--------error.c------//
+int	 	check_error_map(char *str,t_mlx *mlx);
+int		error_msg(char *str, t_mlx *mlx);
+int		check_error_game(int a,t_mlx *mlx);
+void	free_str(char **str,int length);
+int	 	exit_game(t_mlx *mlx);
  //--------path_finding.c------//
-int path_finding(t_point p,t_mlx *mlx);
+int	 	path_finding(t_point p,t_mlx *mlx);
  //--------game_init.c------//
-void player_xy(t_mlx *mlx);
-int creat_path_finding_check(t_mlx *mlx);
+void	player_xy(t_mlx *mlx);
+int	 	creat_path_finding_check(t_mlx *mlx);
+int	 	start_init(char *str,t_mlx *mlx);
+int	 	start_game(char *str,t_mlx *mlx);
  //--------Key_hook.c------//
-int	key_hook(int keycode, t_mlx *mlx);
+int		key_hook(int keycode, t_mlx *mlx);
 
 //--------loop_hook------//
 //int render(t_mlx *mlx);
 
  //--------info_map.c------//
-int	count_colonn(char **str);//compte colonne map
-void print_map(char **map, int line_count); //checker map, print str par str
-char **ft_harvest_map(char *map_sample); // recolte la map en str
-int ft_count_line_map(char *map_sample); // compte nombre de ligne dans la map
-int count_coins(t_mlx *mlx);
-int check_only_PEC01(t_mlx *mlx);
+int		count_colonn(char **str);//compte colonne map
+void	print_map(char **map, int line_count); //checker map, print str par str
+char	**ft_harvest_map(char *map_sample,t_mlx *mlx); // recolte la map en str
+int	 	ft_count_line_map(char *map_sample,t_mlx *mlx); // compte nombre de ligne dans la map
+int	 	count_coins(t_mlx *mlx);
+int	 	check_only_pec01(t_mlx *mlx);
 //------------Check -------------//
-int check_map_ext(char *argv);
-int check_rectangle(char **str, int largeur, int longueur);
-int check_wall_map(t_mlx *mlx);
+int	 	check_map_ext(char *argv);
+int	 	check_rectangle(char **str, int largeur, int longueur);
+int	 	check_wall_map(t_mlx *mlx);
 
-int check_up(t_mlx *mlx);
-int check_down(t_mlx *mlx);
-int check_right(t_mlx *mlx);
-int check_left(t_mlx *mlx);
+//------move.c-------------//
+void	put_and_move_player(t_mlx *mlx,int move_j, int move_i);
+int		check_touch_coins(t_mlx *mlx,int move_j, int move_i);
 
-int check_one_exit(t_mlx *mlx);
-int	check_one_coin(t_mlx *mlx);
-int check_one_player(t_mlx *mlx);
+int	 	check_one_exit(t_mlx *mlx);
+int		check_one_coin(t_mlx *mlx);
+int	 	check_one_player(t_mlx *mlx);
 
 //-------- render -----------//
-int render_exit(t_mlx *mlx);
-void render_wall_map(t_mlx *mlx);
-int render_player(t_mlx *mlx);
+int	 	render_exit(t_mlx *mlx);
+void	render_wall_map(t_mlx *mlx);
+int	 	render_player(t_mlx *mlx);
 void	render_coins(t_mlx *mlx);
 void	print_steps(t_mlx *mlx);
+void	render_all(t_mlx *mlx);
 
  //--------decor_init.c------//
-void init_decor(t_mlx *mlx);
+void	init_decor_path(t_mlx *mlx);
+int	 	check_null_ptr(void *str);
+int		check_ptr(t_mlx *mlx);
 
 # endif

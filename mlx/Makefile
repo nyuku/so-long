@@ -19,10 +19,12 @@ $(NOM): $(OBJ)
 		@printf "${TSEP}\n"
 
 clean:
-	rm -f $(NOM) $(OBJ) *~
-	rm -f mlx_app
+	@rm -f $(NOM) $(OBJ) *~
+	@rm -f mlx_app
 
 fclean: clean
 
 
 re: clean all
+
+
