@@ -1,64 +1,72 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   main.c                                             :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/03/04 17:48:31 by angnguye          #+#    #+#             */
-// /*   Updated: 2023/03/16 14:52:36 by angnguye         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 00:40:15 by angnguye          #+#    #+#             */
+/*   Updated: 2023/04/28 18:04:16 by angnguye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../includes/so_long.h"
+#include "../includes/so_long.h"
 
-// #include <stdio.h>
+void	*ft_memset(void *p, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*str;
 
-// int main(int argc, char **argv)
-// {
-//     int	fd;
-//     if (argc != 2)
-//     {
-//         ft_printf("mauvais path, Usage: ./map/ *.ber\n");
-//         return(NULL);
-//     }
-//     ft_printf("Map selectionnée: %s\n", argv[1]);
-//     fd = open(argv[1], O_RDONLY);
-//     if (fd < 0)
-//     {
-//         ft_printf("Fichier erroné\n");
-// 		close (fd);
-//         return(NULL);
-//     }
+	str = (unsigned char *)p;
+	i = 0;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (p);
+}
 
-// 	t_map	map;
-// 	t_mlx	mlx; // on appelle la structure mlx
+int	openfile(char *s)
+{
+	int	fd;
 
-//     char *image_path = "image/blop.xpm";
-// 	// void *img;//xpm
+	fd = open(s, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Fichier erroné\n");
+		close (fd);
+		return (0);
+	}
+	else
+		close (fd);
+	return (1);
+}
 
-// 	int	img_width;//xmp stock
-// 	int	img_height;//xmp
+static int	my_red_cross(void *mydata)
+{
+	(void) mydata;
+	ft_printf("\n%s\nUn pti courant d'air gênant?\n", DECO);
+	ft_printf("Vous avez bien fait de fermer la fenêtre!, Fufufu\n%s\n", DECO);
+	exit(0);
+	return (0);
+}
 
+int	main(int argc, char **argv)
+{
+	t_mlx	mlx;
 
-//     mlx.mlx_ptr = mlx_init();
-// 	mlx.mlx_window_ptr = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Test :3");
-	
-// 	mlx.img.newimage_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, image_path, &img_width, &img_height);
-// 	if (!mlx.img.newimage_ptr)
-// 	{
-// 		ft_putstr("error file image\n");
-// 		return(ERROR);
-// 	}
-// 	mlx.x = 255;
-// 	mlx.y = 255;
-	
-// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_window_ptr, mlx.img.newimage_ptr, mlx.x, mlx.y);	
-// 	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);
-// 	//test pour detruire image
-// 	//mlx_destroy_image(mlx.mlx_window_ptr, mlx.img.newimage_ptr);
-// 	mlx_loop(mlx.mlx_ptr);// a mettre a la fin pour boucler
-	
-// 	close (fd);
-// }
-
+	ft_memset(&mlx, 0, sizeof(t_mlx));
+	if (argc != 2 || openfile(argv[1]) == 0)
+		exit(1);
+	if (!start_game(argv[1], &mlx))
+		return (exit_game(&mlx));
+	if (mlx.error_trigger == 1)
+		return (exit_game(&mlx));
+	path_finding(mlx.p, &mlx);
+	if (check_error_game(argc, &mlx) != 0)
+		return (exit_game(&mlx));
+	mlx_key_hook(mlx.mlx_window_ptr, key_hook, &mlx);
+	mlx_hook(mlx.mlx_window_ptr, 17, 0, &my_red_cross, &mlx);
+	mlx_loop(mlx.mlx_ptr);
+}

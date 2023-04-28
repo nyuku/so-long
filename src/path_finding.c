@@ -6,14 +6,36 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:58:35 by angela            #+#    #+#             */
-/*   Updated: 2023/04/23 01:08:45 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:43:58 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+void	render_background(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < (mlx->map.lines))
+	{
+		while (i < mlx->map.colonn)
+		{
+			mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_window_ptr, \
+			mlx->decor.background_ptr, (i * 64), (j * 64));
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+}
+
 void	render_all(t_mlx *mlx)
 {
+	render_background(mlx);
+	render_wall_map(mlx);
 	render_wall_map(mlx);
 	render_player(mlx);
 	render_exit(mlx);

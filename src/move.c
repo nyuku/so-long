@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:49:29 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/23 03:01:08 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:26:08 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	check_touch_player(t_mlx *mlx, int move_j, int move_i)
 {
-	if (((mlx->map.char_map[(mlx->y / 64) + move_j][(mlx->x / 64) + \
-	move_i]) != '1' || ((mlx->map.char_map[(mlx->y / 64) + move_j] \
-	[(mlx->x / 64) + move_i]) != 'E') && \
-	(mlx->game.coins_count == mlx->game.coins)))
+	if (((mlx->map.char_map[(mlx->y / 64) + move_j][(mlx->x / 64) + move_i]) \
+	!= '1') && ((((mlx->map.char_map[(mlx->y / 64) + move_j] \
+	[(mlx->x / 64) + move_i]) != 'E') \
+	&& (mlx->game.coins_count <= mlx->game.coins))))
 	{
 		if (mlx->map.char_map[(mlx->y / 64) + move_j] \
 		[(mlx->x / 64) + move_i] == 'C')
@@ -27,13 +27,15 @@ int	check_touch_player(t_mlx *mlx, int move_j, int move_i)
 			[(mlx->x / 64) + move_i] = '0';
 		}
 		put_and_move_player(mlx, move_j, move_i);
-		if (((mlx->x == mlx->exit_x) && (mlx->y == mlx->exit_y)) \
-		&& (mlx->game.coins_count == mlx->game.coins))
-		{
-			mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
-			exit_game(mlx);
-			exit(0);
-		}
+	}
+	else if ((mlx->game.coins_count == mlx->game.coins) && \
+	((mlx->map.char_map[(mlx->y / 64) + move_j][(mlx->x / 64) + move_i]) \
+	== 'E') && (mlx->game.coins_count == mlx->game.coins))
+	{
+		mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
+		ft_printf("%s\n%s%s%s%s%s           ᕙ(⌐■_■)ᕗ \n\n%s\n\n", \
+		DECO, SPACE, MIAM, MAMI, MERCI, SPACE, DECO);
+		exit(0);
 	}
 	return (0);
 }

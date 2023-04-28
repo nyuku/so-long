@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:35:01 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/23 00:26:54 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:06:22 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	error_msg(char *str, t_mlx *mlx)
 {
-	ft_printf("ERROR\n-----\n%s\n\n", str);
+	ft_printf("\n%s\nERROR\n-----\n%s\n%s\n", DECO, str, DECO);
 	mlx->error_trigger = 1;
 	return (1);
 }
@@ -45,7 +45,7 @@ int	check_error_game(int a, t_mlx *mlx)
 	mlx->game.coins || mlx->map.exit_count != 1)
 	{
 		mlx->error_trigger = 1;
-		printf("Error: Path\n");
+		ft_printf("Error: Path\n");
 		return (1);
 	}
 	return (0);
@@ -53,9 +53,12 @@ int	check_error_game(int a, t_mlx *mlx)
 
 int	exit_game(t_mlx *mlx)
 {
-	free_str (mlx->map.char_map, mlx->map.lines);
-	free_str (mlx->map.tableau_check, mlx->map.lines);
-	return (1);
+	if (mlx->map.char_map)
+		free_str (mlx->map.char_map, mlx->map.lines);
+	if (mlx->map.tableau_check)
+		free_str (mlx->map.tableau_check, mlx->map.lines);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
+	exit (1);
 }
 
 void	free_str(char **str, int length)
@@ -63,7 +66,9 @@ void	free_str(char **str, int length)
 	int	i;
 
 	i = 0;
-	while (str != NULL && i < length)
+	if (!str)
+		return ;
+	while (str[i] != NULL && i < length)
 	{
 		free (str[i]);
 		str[i] = NULL;

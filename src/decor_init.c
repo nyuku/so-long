@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:19:20 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/22 23:48:38 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:05:32 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	init_decor_path(t_mlx *mlx)
 {
-	mlx->decor.p_path = "image/blop.xpm";
-	mlx->decor.wall_path = "image/wall1.xpm";
-	mlx->decor.background_path = "image/fond_bloc.xpm";
-	mlx->decor.check_path = "image/check.xpm";
-	mlx->decor.exit_path = "image/exit.xpm";
+	mlx->decor.p_path = "image/chat_chef.xpm";
+	mlx->decor.wall_path = "image/buisson_fleurie.xpm";
+	mlx->decor.background_path = "image/herbe.xpm";
+	mlx->decor.check_path = "image/pomme.xpm";
+	mlx->decor.exit_path = "image/four.xpm";
 }
 
 void	init_decor_ptr(t_mlx *mlx)
@@ -39,7 +39,7 @@ int	check_null_ptr(void *str)
 {
 	if (!str)
 	{
-		ft_printf("error ptrmlx\n");
+		ft_printf("Error\n ptrmlx\n");
 		return (1);
 	}
 	return (0);

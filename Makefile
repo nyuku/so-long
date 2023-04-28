@@ -6,7 +6,7 @@
 #    By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 00:00:00 by angnguye          #+#    #+#              #
-#    Updated: 2023/04/23 00:28:14 by angnguye         ###   ########.fr        #
+#    Updated: 2023/04/28 00:37:38 by angnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ FCLEAN_MSG		=		echo "$(LIGHTGRAY)Deleting program❌$(ENDCOLOR)"
 START_MSG		=		echo "$(LILAC)Compilation of $(NAME) done 🤟$(ENDCOLOR)"
 CHARG_LINE_MSG	=		echo "$(LIGHTCYAN    $(ENDCOLOR)\c"
 # ---------------- FLAGS --------------
-CFLAGS			= -Wall -Wextra -Werror -g  -Imlx -w -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -g  -Imlx -w #-fsanitize=address
 MLXFLAGS 		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # ---------------- Sources -----------
-SRC				= ./src/so_long.c \
+SRC				= ./src/main.c \
 				 ./src/ft_printf/ft_printf.c \
 				 ./src/gnl/get_next_line.c \
 				 ./src/gnl/get_next_line_utils.c \
@@ -59,12 +59,14 @@ OBJS			= ${SRC:.c=.o}
 
 # --------------- Regles --------------------
 
-all:			start ${NAME}	
+all:			start_msg ${NAME}	
 
 ${NAME}:		${OBJS}
 				@${MAKEMLX}
 				@${CC} ${CFLAGS} ${MLXFLAGS} -o ${NAME} ${OBJS}
 
+rleak:
+				@leaks --atExit -- ./${NAME}
 .c.o:
 				@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
@@ -72,9 +74,9 @@ run:
 				@./${NAME} map/simple_map.ber
 # --------------- VISUEL --------------------
 BS_TXT			= echo "\n\n\n\n"
-start:
+start_msg:
 				@$(BS_TXT)
-				@tput setaf 92; cat ascii_art/cat_make; tput setaf default
+				@tput setaf 92; cat ascii_art/cat_make; tput setaf 7
 				@$(BS_TXT)
 
 
@@ -84,22 +86,24 @@ start:
 # --------------- Service nettoyage --------------------
 clean:
 				@$(BS_TXT)
-				@tput setaf 128; cat ascii_art/cat_clean; tput setaf default
+				@tput setaf 128; cat ascii_art/cat_clean; tput setaf 13
 				@$(BS_TXT)
 				@${RM} ${OBJS}
 				@${MAKEMLX} clean
 
 
 fclean:			clean
-				@tput setaf 189; cat ascii_art/cat_fclean; tput setaf default
+				@tput setaf 189; cat ascii_art/cat_fclean; tput setaf 9
 				@$(BS_TXT)	
 				@${RM} ${NAME}
 				@# ${MAKEMLX} fclean
 				@echo "$(GREEN)Cleaning succes🌸$(ENDCOLOR)"
 
 re:				fclean all 
-				@tput setaf 183; cat ascii_art/cat; tput setaf default
+				@tput setaf 183; cat ascii_art/cat; tput setaf 7
 				@$(BS_TXT)
+
+rel:			fclean leaks
 
 norm :
 				@norminette ${SRC}
@@ -107,5 +111,5 @@ norm :
 				@echo "$(PURPLE)Nooooorminetto$(ENDCOLOR)"
 				@$(BS_TXT)
 
-.PHONY : all clean fclean re norm
+.PHONY : all clean fclean re norm leaks rel
 

@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 22:22:45 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/22 23:58:05 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/26 23:24:49 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	start_init(char *str, t_mlx *mlx)
 	mlx->win_width = 64 * mlx->map.colonn;
 	mlx->mlx_ptr = mlx_init();
 	mlx->mlx_window_ptr = mlx_new_window(mlx->mlx_ptr, \
-	mlx->win_width, mlx->win_height, "Test :3");
+	mlx->win_width, mlx->win_height, "Mission: Tarte aux pommes!");
 	mlx->jump = 64;
 	mlx->error_trigger = 0;
 	return (1);

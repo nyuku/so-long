@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:33:44 by angela            #+#    #+#             */
-/*   Updated: 2023/04/23 02:24:08 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:07:32 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 		if (keycode == KEY_ESC)
 		{
 			mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
-			printf("shuting down!\n");
+			ft_printf("\n%s\nshuting down!\n%s\n", DECO, DECO);
 			exit(0);
 		}
 	}	
