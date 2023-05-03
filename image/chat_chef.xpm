@@ -5,11 +5,11 @@ static char *_608f142d3b845338bd204af5d0217edwvBbVCO7JWrp5Fnk[] = {
 "  c None",
 ". c black",
 "X c #080208",
-"o c #FB8960",
+"o c #E64E37",
 "O c #B52450",
 "+ c #4FB6DB",
 "@ c #EDB9ED",
-"# c #F4EBD6",
+"# c gray96",
 "$ c white",
 /* pixels */
 "                            ........                            ",
