@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 01:49:29 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/28 00:26:08 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:03:58 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	check_touch_player(t_mlx *mlx, int move_j, int move_i)
 	== 'E') && (mlx->game.coins_count == mlx->game.coins))
 	{
 		mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_window_ptr);
-		ft_printf("%s\n%s%s%s%s%s           ᕙ(⌐■_■)ᕗ \n\n%s\n\n", \
-		DECO, SPACE, MIAM, MAMI, MERCI, SPACE, DECO);
+		ft_printf("%s\n%s%s%sAvec %d de pommes!\n%sEn %d pas!\n%s%s\n    \
+		ᕙ(⌐■_■)ᕗ%s\n\n%s\n\n", DECO, SPACE, MIAM, SPACE, \
+		mlx->game.coins_count, SPACE, mlx->game.steps, MAMI, \
+		MERCI, SPACE, DECO);
 		exit(0);
 	}
 	return (0);

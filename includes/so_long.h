@@ -6,7 +6,7 @@
 /*   By: angnguye <angnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:55:11 by angnguye          #+#    #+#             */
-/*   Updated: 2023/04/28 17:55:58 by angnguye         ###   ########.fr       */
+/*   Updated: 2023/05/06 12:58:51 by angnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define KEY_RIGHT 124
 # define KEY_ESC 53
 # define JUMP 64
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
 /*◇───────────────────────────────────────────────────────────────◇*\
  *  MACRO ERROR
 \*◇───────────────────────────────────────────────────────────────◇*/
@@ -43,9 +47,9 @@
 # define ERROR_EMPTY "Fichier vide!"
 # define DECO "\n*──────────────────────────────────────────────────────*\n"
 # define MIAM "Miam! La meilleur tarte aux pommes!\n"
-# define MAMI "                      Mamie peut aller se gratter\n\n"
-# define MERCI "                        Merci d'avoir joué!\n\n"
-# define SPACE "                 "
+# define MAMI "              Mamie peut aller se gratter\n\n"
+# define MERCI "              Merci d'avoir joué!"
+# define SPACE "              "
 
 typedef struct s_point
 {
