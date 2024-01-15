@@ -164,6 +164,7 @@ int		check_wall_map(t_mlx *mlx);
 //------move.c-------------//
 void	put_and_move_player(t_mlx *mlx, int move_j, int move_i);
 int		check_touch_coins(t_mlx *mlx, int move_j, int move_i);
+int	check_touch_player(t_mlx *mlx, int move_j, int move_i);
 
 int		check_one_coin(t_mlx *mlx);
 int		check_one_player(t_mlx *mlx);
@@ -176,5 +177,6 @@ void	render_coins(t_mlx *mlx);
 void	init_decor_path(t_mlx *mlx);
 int		check_null_ptr(void *str);
 int		check_ptr(t_mlx *mlx);
+void	init_decor_ptr(t_mlx *mlx);
 
 #endif
